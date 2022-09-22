@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -34,7 +35,7 @@ public class InputController : MonoBehaviour
     {
         _inputActionScheme.Disable();
     }
-    
+
     private void StartMove( InputAction.CallbackContext ctx )
     {
         StartCoroutine( _MoveHandler() );
@@ -48,11 +49,8 @@ public class InputController : MonoBehaviour
     {
         while ( _move.IsInProgress() )
         {
-            OnMoveInput?.Invoke( GetMoveDelta() );
+            OnMoveInput?.Invoke( _move.ReadValue<Vector2>() );
             yield return null;
         }
     }
-
-    private Vector2 GetMoveDelta() => _move.ReadValue<Vector2>() * Time.deltaTime;
-    
 }

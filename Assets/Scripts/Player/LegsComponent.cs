@@ -31,7 +31,7 @@ public class LegsComponent : MonoBehaviour
             if ( IsGrounded )
             {
                 vec2 *= SpeedModifier;
-                _characterController.Move( new Vector3( vec2.x, 0, vec2.y ) );
+                _characterController.SimpleMove( new Vector3( vec2.x, 0, vec2.y ) );
             }
         };
     }
